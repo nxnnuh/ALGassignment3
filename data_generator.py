@@ -31,7 +31,7 @@ def generate_datasets():
     with open("datasets/customer_ids.json", "w") as f:
         json.dump(customer_ids, f)
     
-    print("  ✓ Generated: datasets/customer_ids.json\n")
+    print("  Generated: datasets/customer_ids.json\n")
     
     # ========================================================================
     # Dataset B: Pre-sorted Product Catalog (50,000 entries)
@@ -47,7 +47,7 @@ def generate_datasets():
     with open("datasets/product_catalog.json", "w") as f:
         json.dump(product_ids, f)
     
-    print("  ✓ Generated: datasets/product_catalog.json\n")
+    print("  Generated: datasets/product_catalog.json\n")
     
     # ========================================================================
     # Dataset C: Small Config Settings (500 entries)
@@ -64,7 +64,7 @@ def generate_datasets():
     with open("datasets/config_settings.json", "w") as f:
         json.dump(config_keys, f)
     
-    print("  ✓ Generated: datasets/config_settings.json\n")
+    print("  Generated: datasets/config_settings.json\n")
     
     # ========================================================================
     # Dataset D: Dictionary Words for Autocomplete (10,000 entries)
@@ -92,7 +92,7 @@ def generate_datasets():
     with open("datasets/dictionary_words.json", "w") as f:
         json.dump(words, f)
     
-    print("  ✓ Generated: datasets/dictionary_words.json\n")
+    print("  Generated: datasets/dictionary_words.json\n")
     
     # ========================================================================
     # Generate Test Cases
@@ -123,7 +123,7 @@ def generate_datasets():
     with open("datasets/test_cases.json", "w") as f:
         json.dump(test_cases, f, indent=2)
     
-    print("✓ Test cases generated: datasets/test_cases.json")
+    print("Test cases generated: datasets/test_cases.json")
     print("\nDataset generation complete!")
     print("\nYou can now implement your search algorithms in starter_code.py")
     print("and use these datasets to benchmark performance.\n")

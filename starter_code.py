@@ -1,7 +1,4 @@
-"""
-Search Assignment Starter Code
-Implement three search algorithms and benchmark their performance.
-"""
+
 
 import json
 import time
@@ -13,29 +10,20 @@ import random
 # ============================================================================
 
 def linear_search(data, target):
-    """
-    Search for target in data using linear search.
-    
-    Linear search checks each element sequentially until finding the target
-    or reaching the end of the list.
-    
-    Args:
-        data (list): List to search (can be sorted or unsorted)
-        target: Item to find
-    
-    Returns:
-        int: Index of target if found, -1 if not found
-    
-    Time Complexity: O(n) - must check up to n elements
-    Space Complexity: O(1) - uses constant extra space
-    
-    Example:
-        linear_search([5, 2, 8, 1, 9], 8) returns 2
-        linear_search([5, 2, 8, 1, 9], 7) returns -1
-    """
+    for i in range(len(data)):
+        if data[i] == target:
+            return i
+    return -1
+
+linear_search([5, 2, 8, 1, 9], 8)
+linear_search([5, 2, 8, 1, 9], 8)
+
+
+   
+
     # TODO: Implement linear search that loops through each element and returns its index if found and -1 if not found.
     
-    pass # Delete pass and write your code here
+     # Delete pass and write your code here
 
 
 # ============================================================================
@@ -43,31 +31,24 @@ def linear_search(data, target):
 # ============================================================================
 
 def binary_search_iterative(data, target):
-    """
-    Search for target in SORTED data using iterative binary search.
-    
-    Binary search repeatedly divides the search space in half by comparing
-    the target to the middle element.
-    
-    Args:
-        data (list): SORTED list to search
-        target: Item to find
-    
-    Returns:
-        int: Index of target if found, -1 if not found
-    
-    Time Complexity: O(log n) - divides search space in half each iteration
-    Space Complexity: O(1) - uses constant extra space
-    
-    IMPORTANT: This only works on SORTED data!
-    
-    Example:
-        binary_search_iterative([1, 2, 5, 8, 9], 8) returns 3
-        binary_search_iterative([1, 2, 5, 8, 9], 7) returns -1
-    """
+    left = 0
+    right = len(data) - 1
+
+    while left <= right:
+        mid = (left+right)//2
+        if data[mid] == target:
+            return mid
+        elif data[mid] < target:
+            left = mid + 1
+        else:
+            right = mid + 1
+    return -1
+
+binary_search_iterative([1, 2, 5, 8, 9], 8) #returns 3
+binary_search_iterative([1, 2, 5, 8, 9], 7) #returns -1
     # TODO: Implement iterative binary search that uses iteration to find the target. Return the index if found and -1 if not found.
     
-    pass # Delete pass and write your code here
+    # Delete pass and write your code here
 
 
 # ============================================================================
@@ -75,37 +56,27 @@ def binary_search_iterative(data, target):
 # ============================================================================
 
 def binary_search_recursive(data, target, left=None, right=None):
-    """
-    Search for target in SORTED data using recursive binary search.
-    
-    This is the recursive version of binary search, which naturally expresses
-    the divide-and-conquer approach.
-    
-    Args:
-        data (list): SORTED list to search
-        target: Item to find
-        left (int): Left boundary of search space (defaults to 0)
-        right (int): Right boundary of search space (defaults to len(data)-1)
-    
-    Returns:
-        int: Index of target if found, -1 if not found
-    
-    Time Complexity: O(log n)
-    Space Complexity: O(log n) - recursion call stack
-    
-    Example:
-        binary_search_recursive([1, 2, 5, 8, 9], 8) returns 3
-    """
     # Handle default parameters on first call
     if left is None:
         left = 0
     if right is None:
         right = len(data) - 1
+
+    if left> right: 
+        return -1    
+    mid = (left + right) //2
+    if data[mid] ==target:
+        return mid
+    if data[mid] < target:
+        return binary_search_recursive(data,target,mid + 1, right)
+    else:
+        return binary_search_recursive(data,target,left,mid-1)
     
+binary_search_recursive([1, 2, 5, 8, 9], 8) #returns 3
     # TODO: Implement recursive binary search that uses recursion to find the target. Return the index if found and -1 if not found. Note that default parameters are already handled above.
 
     
-    pass # Delete pass and write your code here
+    # Delete pass and write your code here
 
 
 # ============================================================================
@@ -137,32 +108,32 @@ def test_search_correctness():
     print("Test 1: Linear search on unsorted data")
     result = linear_search(unsorted_data, 9)
     print(f"  linear_search({unsorted_data}, 9) = {result}")
-    print(f"  Expected: 2, Got: {result}, {'✓ PASS' if result == 2 else '✗ FAIL'}")
+    print(f"  Expected: 2, Got: {result}, {'PASS' if result == 2 else 'FAIL'}")
     
     print("\nTest 2: Linear search - item not found")
     result = linear_search(unsorted_data, 99)
     print(f"  linear_search({unsorted_data}, 99) = {result}")
-    print(f"  Expected: -1, Got: {result}, {'✓ PASS' if result == -1 else '✗ FAIL'}")
+    print(f"  Expected: -1, Got: {result}, {'PASS' if result == -1 else 'FAIL'}")
     
     print("\nTest 3: Binary search iterative on sorted data")
     result = binary_search_iterative(sorted_data, 9)
     print(f"  binary_search_iterative({sorted_data}, 9) = {result}")
-    print(f"  Expected: 4, Got: {result}, {'✓ PASS' if result == 4 else '✗ FAIL'}")
+    print(f"  Expected: 4, Got: {result}, {'PASS' if result == 4 else 'FAIL'}")
     
     print("\nTest 4: Binary search iterative - item not found")
     result = binary_search_iterative(sorted_data, 10)
     print(f"  binary_search_iterative({sorted_data}, 10) = {result}")
-    print(f"  Expected: -1, Got: {result}, {'✓ PASS' if result == -1 else '✗ FAIL'}")
+    print(f"  Expected: -1, Got: {result}, {'PASS' if result == -1 else 'FAIL'}")
     
     print("\nTest 5: Binary search recursive on sorted data")
     result = binary_search_recursive(sorted_data, 13)
     print(f"  binary_search_recursive({sorted_data}, 13) = {result}")
-    print(f"  Expected: 6, Got: {result}, {'✓ PASS' if result == 6 else '✗ FAIL'}")
+    print(f"  Expected: 6, Got: {result}, {'PASS' if result == 6 else 'FAIL'}")
     
     print("\nTest 6: Binary search recursive - item not found")
     result = binary_search_recursive(sorted_data, 8)
     print(f"  binary_search_recursive({sorted_data}, 8) = {result}")
-    print(f"  Expected: -1, Got: {result}, {'✓ PASS' if result == -1 else '✗ FAIL'}")
+    print(f"  Expected: -1, Got: {result}, {'PASS' if result == -1 else 'FAIL'}")
 
 
 def benchmark_algorithm(search_func, data, targets):
@@ -287,4 +258,4 @@ if __name__ == "__main__":
     # benchmark_all_datasets()
     # analyze_preprocessing_costs()
     
-    print("\n⚠ Uncomment the test functions in the main block to run benchmarks!")
+    print("\n Uncomment the test functions in the main block to run benchmarks!")
